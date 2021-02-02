@@ -40,10 +40,10 @@ for files in Directories:
     os.chdir(r'/home/YOUR_ACCOUNT/scratch/Results/Edmonton/ConcatCSVFiles/'+files+'/') # Change directory to where I am saving the results
 
     df = pd.concat(li, axis=0, ignore_index=True) # Concat all of the dataframes together
-    df['Time (UTC)'] = pd.to_datetime(df['Time (UTC)']) # Make time column datetime format rather than string, for organizing
-    df = df.sort_values(by='Time (UTC)') # Organize data
+    df['Time [UTC]'] = pd.to_datetime(df['Time [UTC]']) # Make time column datetime format rather than string, for organizing
+    df = df.sort_values(by='Time [UTC]') # Organize data
     df = df.round(3) # 3 Significant digits
-    df['Time (UTC)'] = df['Time (UTC)'].dt.strftime("%Y-%m-%d %H:%M") # Return datetime to string for .csv file
+    df['Time [UTC]'] = df['Time [UTC]'].dt.strftime("%Y-%m-%d %H:%M") # Return datetime to string for .csv file
     df.to_csv(files+'.csv', index = False) # Save to .csv
     df = df.empty # Ensure that dataframe is clear for next interation
     print('Done', files)
